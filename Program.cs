@@ -5,37 +5,84 @@
         static List<int> numbers = new List<int>();
         static List<int> numbersWithoutFrequent = new List<int>();
         static List<int> Frequent = new List<int>();
+
+        static List<string> words = new List<string>();
+        static List<string> letters = new List<string>();
+        static List<string> lettersReverse = new List<string>();
+        static List<bool> Palindrome = new List<bool>();
         static void Main(string[] args)
         {
+            ///*
+            // * 1. Top N Frequent Numbers
+            //   Given a List<int> of numbers, find the top N most frequent numbers
+            // */
+            //int num;
+            //Console.WriteLine("Enter list of int numbers (at less 5 number):");
+            //char choice;
+            //do
+            //{
+            //    Console.WriteLine($"Enter the {numbers.Count+1} number:");
+            //    num = int.Parse(Console.ReadLine());
+            //    numbers.Add(num);
+
+            //    Console.WriteLine("Do you want to add anther" +
+            //                                  " number? y / n");
+            //    choice = Console.ReadKey().KeyChar;
+            //    Console.ReadLine();//just to hold second ...
+            //} while (choice == 'y' || choice == 'Y');
+            ////to show your list elements ...
+            //Console.WriteLine("numbers list elements:");
+            //for(int i = 0; i<numbers.Count; i++)
+            //{
+            //    Console.WriteLine($"Number {i+1}: {numbers[i]}");
+            //}
+            ////to get Top N Frequent Numbers call ...
+            //for(int i = 0; i < numbers.Count; i++)
+            //{
+            //    TopNFrequentNumbers(numbers[i]);
+            //}
+
+            //-------------------------------------------------------------------------------
+
             /*
-             * 1. Top N Frequent Numbers
-               Given a List<int> of numbers, find the top N most frequent numbers
+             * 2. Palindrome Filter
+               Given a list of strings, filter out all non-palindrome strings using 
+               a function and return a new List<string> containing only palindromes.
              */
-            int num;
-            Console.WriteLine("Enter list of int numbers (at less 5 number):");
-            char choice;
+            //to insert string in your words list ...
+            Console.WriteLine("Enter list of string (at less 5 number):");
+            char choice1;
             do
             {
-                Console.WriteLine($"Enter the {numbers.Count+1} number:");
-                num = int.Parse(Console.ReadLine());
-                numbers.Add(num);
+                Console.WriteLine($"Enter the {words.Count + 1} string:");
+                words.Add(Console.ReadLine());
 
                 Console.WriteLine("Do you want to add anther" +
-                                              " number? y / n");
-                choice = Console.ReadKey().KeyChar;
+                                              " string? y / n");
+                choice1 = Console.ReadKey().KeyChar;
                 Console.ReadLine();//just to hold second ...
-            } while (choice == 'y' || choice == 'Y');
-            //to show your list elements ...
-            Console.WriteLine("numbers list elements:");
-            for(int i = 0; i<numbers.Count; i++)
+            } while (choice1 == 'y' || choice1 == 'Y');
+            //to show your words list elements ...
+            Console.WriteLine("words list elements:");
+            for (int i = 0; i < words.Count; i++)
             {
-                Console.WriteLine($"Number {i+1}: {numbers[i]}");
+                Console.WriteLine($"String {i + 1}: {words[i]}");
             }
-            //to get Top N Frequent Numbers call ...
-            for(int i = 0; i < numbers.Count; i++)
+            //to get Palindrome Filter ...
+            for(int i = 0; i < words.Count; i++)
             {
-                TopNFrequentNumbers(numbers[i]);
+                PalindromeFilter(words[i]);
             }
+            //to print only palindromes string ...
+            Console.WriteLine("The palindromes string:");
+            for(int i = 0; i < words.Count; i++)
+            {
+                if (Palindrome[i])
+                {
+                    Console.WriteLine(words[i]);
+                }
+            }
+
 
         }
 
@@ -117,6 +164,37 @@
             //}
 
 
+        }
+        //2. Palindrome Filter ...
+        public static void PalindromeFilter(string word)
+        {
+            //to clear the list and work in the new string we have ...
+            letters.Clear();
+            lettersReverse.Clear();
+            //to store each letter in the word as element in letters list ...
+            letters = word.Select(c => c.ToString()).ToList();
+            //to store the reverse of letters list in lettersReverse ...
+            for (int i = letters.Count - 1; i >= 0; i--)
+            {
+                lettersReverse.Add(letters[i]);
+            }
+            //to check if the letters and lettersReverse are same or not
+            int count = 0;
+            for(int i = 0; i < letters.Count; i++)
+            {
+                if (letters[i] == lettersReverse[i])
+                {
+                    count++;
+                }
+            }
+            if(count == letters.Count)
+            {
+                Palindrome.Add(true);
+            }
+            else
+            {
+                Palindrome.Add(false);
+            }
         }
     }
 }
