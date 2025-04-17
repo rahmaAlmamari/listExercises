@@ -2,14 +2,17 @@
 {
     internal class Program
     {
+        //1. Top N Frequent Numbers variables ...
         static List<int> numbers = new List<int>();
         static List<int> numbersWithoutFrequent = new List<int>();
         static List<int> Frequent = new List<int>();
-
+        //2. Palindrome Filter variables ...
         static List<string> words = new List<string>();
         static List<string> letters = new List<string>();
         static List<string> lettersReverse = new List<string>();
         static List<bool> Palindrome = new List<bool>();
+        //3. Shift List Elements variables ...
+        static List<int> elements = new List<int>();
         static void Main(string[] args)
         {
             ///*
@@ -44,44 +47,78 @@
 
             //-------------------------------------------------------------------------------
 
-            /*
-             * 2. Palindrome Filter
-               Given a list of strings, filter out all non-palindrome strings using 
-               a function and return a new List<string> containing only palindromes.
-             */
-            //to insert string in your words list ...
-            Console.WriteLine("Enter list of string (at less 5 number):");
-            char choice1;
+            ///*
+            // * 2. Palindrome Filter
+            //   Given a list of strings, filter out all non-palindrome strings using 
+            //   a function and return a new List<string> containing only palindromes.
+            // */
+            ////to insert string in your words list ...
+            //Console.WriteLine("Enter list of string (at less 5 number):");
+            //char choice1;
+            //do
+            //{
+            //    Console.WriteLine($"Enter the {words.Count + 1} string:");
+            //    words.Add(Console.ReadLine());
+
+            //    Console.WriteLine("Do you want to add anther" +
+            //                                  " string? y / n");
+            //    choice1 = Console.ReadKey().KeyChar;
+            //    Console.ReadLine();//just to hold second ...
+            //} while (choice1 == 'y' || choice1 == 'Y');
+            ////to show your words list elements ...
+            //Console.WriteLine("words list elements:");
+            //for (int i = 0; i < words.Count; i++)
+            //{
+            //    Console.WriteLine($"String {i + 1}: {words[i]}");
+            //}
+            ////to get Palindrome Filter ...
+            //for(int i = 0; i < words.Count; i++)
+            //{
+            //    PalindromeFilter(words[i]);
+            //}
+            ////to print only palindromes string ...
+            //Console.WriteLine("The palindromes string:");
+            //for(int i = 0; i < words.Count; i++)
+            //{
+            //    if (Palindrome[i])
+            //    {
+            //        Console.WriteLine(words[i]);
+            //    }
+            //}
+
+            //-----------------------------------------------------------------------
+
+            ///*
+            // * 3. Shift List Elements
+            //   Write a function that rotates the elements of 
+            //   a List<int> to the right by k steps.
+            // */
+            int num1;
+            Console.WriteLine("Enter list of int numbers (at less 5 number):");
+            char choice2;
             do
             {
-                Console.WriteLine($"Enter the {words.Count + 1} string:");
-                words.Add(Console.ReadLine());
+                Console.WriteLine($"Enter the {elements.Count + 1} number:");
+                num1 = int.Parse(Console.ReadLine());
+                elements.Add(num1);
 
                 Console.WriteLine("Do you want to add anther" +
-                                              " string? y / n");
-                choice1 = Console.ReadKey().KeyChar;
+                                              " number? y / n");
+                choice2 = Console.ReadKey().KeyChar;
                 Console.ReadLine();//just to hold second ...
-            } while (choice1 == 'y' || choice1 == 'Y');
-            //to show your words list elements ...
-            Console.WriteLine("words list elements:");
-            for (int i = 0; i < words.Count; i++)
+            } while (choice2 == 'y' || choice2 == 'Y');
+            //to show your list elements ...
+            Console.WriteLine("Elements list befor shifting:");
+            for (int i = 0; i < elements.Count; i++)
             {
-                Console.WriteLine($"String {i + 1}: {words[i]}");
+                Console.WriteLine($"Number {i + 1}: {elements[i]}");
             }
-            //to get Palindrome Filter ...
-            for(int i = 0; i < words.Count; i++)
-            {
-                PalindromeFilter(words[i]);
-            }
-            //to print only palindromes string ...
-            Console.WriteLine("The palindromes string:");
-            for(int i = 0; i < words.Count; i++)
-            {
-                if (Palindrome[i])
-                {
-                    Console.WriteLine(words[i]);
-                }
-            }
+            //to Shift List Elements ...
+            ShiftListElements(elements);
+
+
+            //------------------------------------------------------------------
+
 
 
         }
@@ -194,6 +231,21 @@
             else
             {
                 Palindrome.Add(false);
+            }
+        }
+        //3. Shift List Elements ... 
+        public static void ShiftListElements(List<int> elements)
+        {
+            int shiftTime;
+            Console.WriteLine("Enter the shift times you wants:");
+            shiftTime = int.Parse(Console.ReadLine());
+            for(int i = 0; i < shiftTime; i++)
+            {
+                int tempLast = elements[elements.Count - 1];
+                for(int j = 0; j < elements.Count; j++)
+                {
+
+                }
             }
         }
     }
