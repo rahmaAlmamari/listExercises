@@ -115,7 +115,12 @@
             }
             //to Shift List Elements ...
             ShiftListElements(elements);
-
+            //to show your list elements ...
+            Console.WriteLine("Elements list after shifting:");
+            for (int i = 0; i < elements.Count; i++)
+            {
+                Console.WriteLine($"Number {i + 1}: {elements[i]}");
+            }
 
             //------------------------------------------------------------------
 
@@ -242,10 +247,11 @@
             for(int i = 0; i < shiftTime; i++)
             {
                 int tempLast = elements[elements.Count - 1];
-                for(int j = 0; j < elements.Count; j++)
+                for(int j = elements.Count - 1; j > 0; j--)
                 {
-
+                    elements[j] = elements[j - 1];
                 }
+                elements[0] = tempLast;
             }
         }
     }
