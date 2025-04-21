@@ -1,4 +1,6 @@
-﻿namespace listExercises
+﻿using System.Xml;
+
+namespace listExercises
 {
     internal class Program
     {
@@ -13,6 +15,9 @@
         static List<bool> Palindrome = new List<bool>();
         //3. Shift List Elements variables ...
         static List<int> elements = new List<int>();
+        //4. Unique Words Extractor variables ...
+        static List<string> paragraphWords = new List<string>();
+        static List<string> UniqueParagraphWords = new List<string>();
         static void Main(string[] args)
         {
             ///*
@@ -88,42 +93,54 @@
 
             //-----------------------------------------------------------------------
 
-            ///*
-            // * 3. Shift List Elements
-            //   Write a function that rotates the elements of 
-            //   a List<int> to the right by k steps.
-            // */
-            int num1;
-            Console.WriteLine("Enter list of int numbers (at less 5 number):");
-            char choice2;
-            do
-            {
-                Console.WriteLine($"Enter the {elements.Count + 1} number:");
-                num1 = int.Parse(Console.ReadLine());
-                elements.Add(num1);
+            /////*
+            //// * 3. Shift List Elements
+            ////   Write a function that rotates the elements of 
+            ////   a List<int> to the right by k steps.
+            //// */
+            //int num1;
+            //Console.WriteLine("Enter list of int numbers (at less 5 number):");
+            //char choice2;
+            //do
+            //{
+            //    Console.WriteLine($"Enter the {elements.Count + 1} number:");
+            //    num1 = int.Parse(Console.ReadLine());
+            //    elements.Add(num1);
 
-                Console.WriteLine("Do you want to add anther" +
-                                              " number? y / n");
-                choice2 = Console.ReadKey().KeyChar;
-                Console.ReadLine();//just to hold second ...
-            } while (choice2 == 'y' || choice2 == 'Y');
-            //to show your list elements ...
-            Console.WriteLine("Elements list befor shifting:");
-            for (int i = 0; i < elements.Count; i++)
-            {
-                Console.WriteLine($"Number {i + 1}: {elements[i]}");
-            }
-            //to Shift List Elements ...
-            ShiftListElements(elements);
-            //to show your list elements ...
-            Console.WriteLine("Elements list after shifting:");
-            for (int i = 0; i < elements.Count; i++)
-            {
-                Console.WriteLine($"Number {i + 1}: {elements[i]}");
-            }
+            //    Console.WriteLine("Do you want to add anther" +
+            //                                  " number? y / n");
+            //    choice2 = Console.ReadKey().KeyChar;
+            //    Console.ReadLine();//just to hold second ...
+            //} while (choice2 == 'y' || choice2 == 'Y');
+            ////to show your list elements ...
+            //Console.WriteLine("Elements list befor shifting:");
+            //for (int i = 0; i < elements.Count; i++)
+            //{
+            //    Console.WriteLine($"Number {i + 1}: {elements[i]}");
+            //}
+            ////to Shift List Elements ...
+            //ShiftListElements(elements);
+            ////to show your list elements ...
+            //Console.WriteLine("Elements list after shifting:");
+            //for (int i = 0; i < elements.Count; i++)
+            //{
+            //    Console.WriteLine($"Number {i + 1}: {elements[i]}");
+            //}
 
             //------------------------------------------------------------------
 
+            /*
+             4. Unique Words Extractor
+                Write a program that takes a paragraph from the user, 
+                splits it into words, and stores only the unique words in a List<string>. 
+                Then, sort the list alphabetically and print it.
+             */
+            //to take the input from the user ...
+            string paragraph;
+            Console.WriteLine("Enter your paragraph:");
+            paragraph = Console.ReadLine();
+            //to call the UniqueWordsExtractor method ...
+            UniqueWordsExtractor(paragraph);
 
 
         }
@@ -253,6 +270,36 @@
                 }
                 elements[0] = tempLast;
             }
+        }
+        //4. Unique Words Extractor ...
+        public static void UniqueWordsExtractor(string words)
+        {
+            //to split each word in the paragraph individually and store them in paragraphWords list ...
+            paragraphWords = words.Split(" ").ToList();
+            //to get the unique words in paragraphWords list ...
+            int count = 0; 
+            for(int i = 0; i < paragraphWords.Count; i++)
+            {
+                count = 0;
+                for (int j = 0; j < paragraphWords.Count; j++)
+                {
+                    if (paragraphWords[i] == paragraphWords[j])
+                    {
+                        count++;
+                    }
+                }
+                if(count <= 1)
+                {
+                    UniqueParagraphWords.Add(paragraphWords[i]);
+                }
+            }
+            //to show the unique words in paragraphWords list ...
+            for(int i = 0; i < UniqueParagraphWords.Count; i++)
+            {
+                Console.WriteLine(UniqueParagraphWords[i]); 
+            }
+
+
         }
     }
 }
